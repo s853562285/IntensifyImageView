@@ -303,7 +303,7 @@ class IntensifyImageDelegate {
     }
 
     public float getScale() {
-        return 1f * mImageArea.width() / mImage.mImageWidth;
+        return 1f * mImageArea.width() / getWidth();
     }
 
     public float getBaseScale() {
@@ -620,6 +620,7 @@ class IntensifyImageDelegate {
 
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
+            if (mImage==null) return;
             Float value = (Float) animation.getAnimatedValue();
             Utils.evaluate(value, mStartRect, mEndRect, mImageArea);
             requestScaleChange();
